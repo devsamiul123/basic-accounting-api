@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderDueController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlacingOrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StatisticsReportController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::apiResource('/withdraw', WithdrawController::class);
 
 
 Route::apiResource('/placing_order', PlacingOrderController::class);
+Route::apiResource('/statistics_report', StatisticsReportController::class);
 
 
 
