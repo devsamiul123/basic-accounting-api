@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => Order::factory(),
+            'paid_amount' => fake()->numberBetween(1, 250),
+            'payment_type' => fake()->randomElement(['cash', 'mobile banking', 'wire transfer']),
+            'payment_account' => fake()->text(22),
+            'paid_date' => fake()->date()
         ];
     }
 }

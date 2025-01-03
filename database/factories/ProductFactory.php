@@ -17,7 +17,9 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_name' => fake()->unique()->userName(),
+            'unit_price' => fake()->numberBetween(10, 30),
+            'unit_type' => fake()->randomElement(['sft', 'kg'])
         ];
     }
 }

@@ -17,7 +17,8 @@ class WithdrawFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'withdraw_amount' => fake()->numberBetween(1, 500),
+            'withdraw_date' => fake()->date()
         ];
     }
 }

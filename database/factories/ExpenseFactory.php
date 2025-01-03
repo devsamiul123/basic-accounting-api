@@ -17,7 +17,9 @@ class ExpenseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'description' => fake()->paragraph(),
+            'paid_amount' => fake()->numberBetween(150, 550),
+            'expense_date' => fake()->date()
         ];
     }
 }
