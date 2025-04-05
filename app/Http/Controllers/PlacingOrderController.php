@@ -33,9 +33,25 @@ class PlacingOrderController extends Controller
         $request = $request->toArray();
         unset($request['child']);
 
+        // calculate total price from order details and add to order and then insert it into order table
+        $totalPrice = 0;
+        $itemPrice = 0;
+        $ipr = array();
+        foreach($orderDetails as $orderDetail){
+            $product = Product::find($orderDetail['product_id']);
+            $productUnitPrice = $product->unit_price;
+            $itemPrice = $orderDetail['qty'] * $orderDetail['unit_in_number'] * $productUnitPrice;
+            $totalPrice += $itemPrice;
+            $ipr[] = $itemPrice;
+            $orderDetail['item_price'] = $itemPrice;
+        }
+        $ipr['tp'] = $totalPrice;
+        $request['total_price'] = $totalPrice;
+
         // insert data
         $order = Order::create($request);
         $order->orderDetails()->createMany($orderDetails);
+
 
         // get data
         $odr = Order::find($order->id);
